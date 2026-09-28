@@ -1,8 +1,8 @@
 namespace pryLantieriGimnasio
 {
-    public partial class frmGimnasioSiglo : Form
+    public partial class frmInscripcion : Form
     {
-        public frmGimnasioSiglo()
+        public frmInscripcion()
         {
             InitializeComponent();
         }
