@@ -154,7 +154,7 @@
             rbtEfectivo.Location = new Point(9, 23);
             rbtEfectivo.Name = "rbtEfectivo";
             rbtEfectivo.Size = new Size(110, 29);
-            rbtEfectivo.TabIndex = 1;
+            rbtEfectivo.TabIndex = 0;
             rbtEfectivo.TabStop = true;
             rbtEfectivo.Text = "Efectivo";
             rbtEfectivo.UseVisualStyleBackColor = true;
@@ -178,6 +178,7 @@
             txtEdad.Name = "txtEdad";
             txtEdad.Size = new Size(33, 23);
             txtEdad.TabIndex = 2;
+            txtEdad.KeyPress += txtEdad_KeyPress;
             // 
             // chkCasillero
             // 
@@ -200,10 +201,10 @@
             chkEstudiante.TabIndex = 3;
             chkEstudiante.Text = "Estudiante";
             chkEstudiante.UseVisualStyleBackColor = true;
+          
             // 
             // cboCuotas
             // 
-            cboCuotas.Enabled = false;
             cboCuotas.FormattingEnabled = true;
             cboCuotas.Location = new Point(101, 66);
             cboCuotas.Name = "cboCuotas";
@@ -230,6 +231,7 @@
             btnCalcular.TabIndex = 10;
             btnCalcular.Text = "&Calcular";
             btnCalcular.UseVisualStyleBackColor = true;
+            btnCalcular.Click += btnCalcular_Click;
             // 
             // btnLimpiar
             // 
@@ -240,6 +242,7 @@
             btnLimpiar.TabIndex = 11;
             btnLimpiar.Text = "&Limpiar";
             btnLimpiar.UseVisualStyleBackColor = true;
+            btnLimpiar.Click += btnLimpiar_Click;
             // 
             // txtMeses
             // 
@@ -248,9 +251,11 @@
             txtMeses.Name = "txtMeses";
             txtMeses.Size = new Size(128, 23);
             txtMeses.TabIndex = 6;
+            txtMeses.KeyPress += txtMeses_KeyPress;
             // 
             // frmInscripcion
             // 
+            AcceptButton = btnCalcular;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(528, 513);
@@ -276,6 +281,7 @@
             Name = "frmInscripcion";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gimnasio Siglo — Inscripción";
+            Load += frmInscripcion_Load;
             grpPagos.ResumeLayout(false);
             grpPagos.PerformLayout();
             ResumeLayout(false);
