@@ -65,7 +65,7 @@
             // 
             lblNombre.AutoSize = true;
             lblNombre.Font = new Font("Yu Gothic", 18F, FontStyle.Bold);
-            lblNombre.Location = new Point(51, 102);
+            lblNombre.Location = new Point(54, 85);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(114, 31);
             lblNombre.TabIndex = 1;
@@ -75,7 +75,7 @@
             // 
             lblEdad.AutoSize = true;
             lblEdad.Font = new Font("Yu Gothic", 18F, FontStyle.Bold);
-            lblEdad.Location = new Point(84, 142);
+            lblEdad.Location = new Point(87, 125);
             lblEdad.Name = "lblEdad";
             lblEdad.Size = new Size(81, 31);
             lblEdad.TabIndex = 2;
@@ -85,7 +85,7 @@
             // 
             lblPlanes.AutoSize = true;
             lblPlanes.Font = new Font("Yu Gothic", 18F, FontStyle.Bold);
-            lblPlanes.Location = new Point(89, 189);
+            lblPlanes.Location = new Point(92, 172);
             lblPlanes.Name = "lblPlanes";
             lblPlanes.Size = new Size(74, 31);
             lblPlanes.TabIndex = 4;
@@ -95,7 +95,7 @@
             // 
             lblTurno.AutoSize = true;
             lblTurno.Font = new Font("Yu Gothic", 18F, FontStyle.Bold);
-            lblTurno.Location = new Point(75, 230);
+            lblTurno.Location = new Point(78, 213);
             lblTurno.Name = "lblTurno";
             lblTurno.Size = new Size(88, 31);
             lblTurno.TabIndex = 5;
@@ -105,7 +105,7 @@
             // 
             lblMeses.AutoSize = true;
             lblMeses.Font = new Font("Yu Gothic", 18F, FontStyle.Bold);
-            lblMeses.Location = new Point(65, 273);
+            lblMeses.Location = new Point(68, 256);
             lblMeses.Name = "lblMeses";
             lblMeses.Size = new Size(98, 31);
             lblMeses.TabIndex = 6;
@@ -124,28 +124,34 @@
             // cboPlan
             // 
             cboPlan.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboPlan.Enabled = false;
             cboPlan.FormattingEnabled = true;
-            cboPlan.Location = new Point(176, 197);
+            cboPlan.Location = new Point(179, 180);
             cboPlan.Name = "cboPlan";
             cboPlan.Size = new Size(121, 23);
             cboPlan.TabIndex = 4;
+            cboPlan.SelectedIndexChanged += cboPlan_SelectedIndexChanged;
             // 
             // cboTurno
             // 
             cboTurno.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboTurno.Enabled = false;
             cboTurno.FormattingEnabled = true;
-            cboTurno.Location = new Point(176, 239);
+            cboTurno.Location = new Point(179, 222);
             cboTurno.Name = "cboTurno";
             cboTurno.Size = new Size(121, 23);
             cboTurno.TabIndex = 5;
+            cboTurno.SelectedIndexChanged += cboTurno_SelectedIndexChanged;
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(176, 110);
+            txtNombre.CharacterCasing = CharacterCasing.Upper;
+            txtNombre.Location = new Point(179, 93);
             txtNombre.MaxLength = 30;
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(128, 23);
             txtNombre.TabIndex = 1;
+            txtNombre.TextChanged += txtNombre_TextChanged;
             // 
             // rbtEfectivo
             // 
@@ -173,43 +179,46 @@
             // 
             // txtEdad
             // 
-            txtEdad.Location = new Point(176, 150);
+            txtEdad.Enabled = false;
+            txtEdad.Location = new Point(179, 133);
             txtEdad.MaxLength = 3;
             txtEdad.Name = "txtEdad";
             txtEdad.Size = new Size(33, 23);
             txtEdad.TabIndex = 2;
+            txtEdad.TextChanged += txtEdad_TextChanged;
             txtEdad.KeyPress += txtEdad_KeyPress;
             // 
             // chkCasillero
             // 
             chkCasillero.AutoSize = true;
-            chkCasillero.Font = new Font("Yu Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            chkCasillero.Location = new Point(74, 310);
+            chkCasillero.Font = new Font("Yu Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            chkCasillero.Location = new Point(75, 311);
             chkCasillero.Name = "chkCasillero";
-            chkCasillero.Size = new Size(135, 35);
+            chkCasillero.Size = new Size(232, 29);
             chkCasillero.TabIndex = 7;
-            chkCasillero.Text = "Casillero";
+            chkCasillero.Text = "Casillero - $3000/mes";
             chkCasillero.UseVisualStyleBackColor = true;
             // 
             // chkEstudiante
             // 
             chkEstudiante.AutoSize = true;
             chkEstudiante.Font = new Font("Yu Gothic Medium", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            chkEstudiante.Location = new Point(217, 148);
+            chkEstudiante.Location = new Point(220, 131);
             chkEstudiante.Name = "chkEstudiante";
             chkEstudiante.Size = new Size(118, 25);
             chkEstudiante.TabIndex = 3;
             chkEstudiante.Text = "Estudiante";
             chkEstudiante.UseVisualStyleBackColor = true;
-          
             // 
             // cboCuotas
             // 
+            cboCuotas.DropDownStyle = ComboBoxStyle.DropDownList;
             cboCuotas.FormattingEnabled = true;
             cboCuotas.Location = new Point(101, 66);
             cboCuotas.Name = "cboCuotas";
             cboCuotas.Size = new Size(121, 23);
             cboCuotas.TabIndex = 2;
+            cboCuotas.SelectedIndexChanged += cboCuotas_SelectedIndexChanged;
             // 
             // grpPagos
             // 
@@ -225,7 +234,7 @@
             // btnCalcular
             // 
             btnCalcular.Font = new Font("Yu Gothic", 14.25F, FontStyle.Bold);
-            btnCalcular.Location = new Point(69, 453);
+            btnCalcular.Location = new Point(250, 466);
             btnCalcular.Name = "btnCalcular";
             btnCalcular.Size = new Size(130, 35);
             btnCalcular.TabIndex = 10;
@@ -236,7 +245,7 @@
             // btnLimpiar
             // 
             btnLimpiar.Font = new Font("Yu Gothic", 14.25F, FontStyle.Bold);
-            btnLimpiar.Location = new Point(217, 453);
+            btnLimpiar.Location = new Point(386, 466);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(130, 35);
             btnLimpiar.TabIndex = 11;
@@ -246,7 +255,8 @@
             // 
             // txtMeses
             // 
-            txtMeses.Location = new Point(176, 282);
+            txtMeses.Enabled = false;
+            txtMeses.Location = new Point(179, 265);
             txtMeses.MaxLength = 2;
             txtMeses.Name = "txtMeses";
             txtMeses.Size = new Size(128, 23);
