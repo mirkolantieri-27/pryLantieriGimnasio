@@ -34,7 +34,6 @@
             lblPlanes = new Label();
             lblTurno = new Label();
             lblMeses = new Label();
-            lblPago = new Label();
             cboPlan = new ComboBox();
             cboTurno = new ComboBox();
             txtNombre = new TextBox();
@@ -55,7 +54,7 @@
             // 
             lblTitulo.AutoSize = true;
             lblTitulo.Font = new Font("Yu Gothic", 24F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblTitulo.Location = new Point(164, 25);
+            lblTitulo.Location = new Point(45, 9);
             lblTitulo.Name = "lblTitulo";
             lblTitulo.Size = new Size(233, 42);
             lblTitulo.TabIndex = 0;
@@ -65,7 +64,7 @@
             // 
             lblNombre.AutoSize = true;
             lblNombre.Font = new Font("Yu Gothic", 18F, FontStyle.Bold);
-            lblNombre.Location = new Point(54, 85);
+            lblNombre.Location = new Point(12, 88);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(114, 31);
             lblNombre.TabIndex = 1;
@@ -75,7 +74,7 @@
             // 
             lblEdad.AutoSize = true;
             lblEdad.Font = new Font("Yu Gothic", 18F, FontStyle.Bold);
-            lblEdad.Location = new Point(87, 125);
+            lblEdad.Location = new Point(45, 128);
             lblEdad.Name = "lblEdad";
             lblEdad.Size = new Size(81, 31);
             lblEdad.TabIndex = 2;
@@ -85,7 +84,7 @@
             // 
             lblPlanes.AutoSize = true;
             lblPlanes.Font = new Font("Yu Gothic", 18F, FontStyle.Bold);
-            lblPlanes.Location = new Point(92, 172);
+            lblPlanes.Location = new Point(50, 175);
             lblPlanes.Name = "lblPlanes";
             lblPlanes.Size = new Size(74, 31);
             lblPlanes.TabIndex = 4;
@@ -95,7 +94,7 @@
             // 
             lblTurno.AutoSize = true;
             lblTurno.Font = new Font("Yu Gothic", 18F, FontStyle.Bold);
-            lblTurno.Location = new Point(78, 213);
+            lblTurno.Location = new Point(36, 216);
             lblTurno.Name = "lblTurno";
             lblTurno.Size = new Size(88, 31);
             lblTurno.TabIndex = 5;
@@ -105,39 +104,30 @@
             // 
             lblMeses.AutoSize = true;
             lblMeses.Font = new Font("Yu Gothic", 18F, FontStyle.Bold);
-            lblMeses.Location = new Point(68, 256);
+            lblMeses.Location = new Point(26, 259);
             lblMeses.Name = "lblMeses";
             lblMeses.Size = new Size(98, 31);
             lblMeses.TabIndex = 6;
             lblMeses.Text = "Meses:";
-            // 
-            // lblPago
-            // 
-            lblPago.AutoSize = true;
-            lblPago.Font = new Font("Yu Gothic", 18F, FontStyle.Bold);
-            lblPago.Location = new Point(65, 358);
-            lblPago.Name = "lblPago";
-            lblPago.Size = new Size(207, 31);
-            lblPago.TabIndex = 8;
-            lblPago.Text = "Formas de pago:";
             // 
             // cboPlan
             // 
             cboPlan.DropDownStyle = ComboBoxStyle.DropDownList;
             cboPlan.Enabled = false;
             cboPlan.FormattingEnabled = true;
-            cboPlan.Location = new Point(179, 180);
+            cboPlan.Location = new Point(137, 183);
             cboPlan.Name = "cboPlan";
             cboPlan.Size = new Size(121, 23);
             cboPlan.TabIndex = 4;
             cboPlan.SelectedIndexChanged += cboPlan_SelectedIndexChanged;
+            cboPlan.Click += cboPlan_Click;
             // 
             // cboTurno
             // 
             cboTurno.DropDownStyle = ComboBoxStyle.DropDownList;
             cboTurno.Enabled = false;
             cboTurno.FormattingEnabled = true;
-            cboTurno.Location = new Point(179, 222);
+            cboTurno.Location = new Point(137, 225);
             cboTurno.Name = "cboTurno";
             cboTurno.Size = new Size(121, 23);
             cboTurno.TabIndex = 5;
@@ -146,18 +136,19 @@
             // txtNombre
             // 
             txtNombre.CharacterCasing = CharacterCasing.Upper;
-            txtNombre.Location = new Point(179, 93);
+            txtNombre.Location = new Point(137, 96);
             txtNombre.MaxLength = 30;
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(128, 23);
             txtNombre.TabIndex = 1;
             txtNombre.TextChanged += txtNombre_TextChanged;
+            txtNombre.KeyPress += txtNombre_KeyPress;
             // 
             // rbtEfectivo
             // 
             rbtEfectivo.AutoSize = true;
             rbtEfectivo.Font = new Font("Yu Gothic Medium", 14.25F, FontStyle.Bold);
-            rbtEfectivo.Location = new Point(9, 23);
+            rbtEfectivo.Location = new Point(12, 38);
             rbtEfectivo.Name = "rbtEfectivo";
             rbtEfectivo.Size = new Size(110, 29);
             rbtEfectivo.TabIndex = 0;
@@ -169,18 +160,19 @@
             // 
             rbtTarjeta.AutoSize = true;
             rbtTarjeta.Font = new Font("Yu Gothic Medium", 14.25F, FontStyle.Bold);
-            rbtTarjeta.Location = new Point(125, 23);
+            rbtTarjeta.Location = new Point(128, 38);
             rbtTarjeta.Name = "rbtTarjeta";
             rbtTarjeta.Size = new Size(100, 29);
             rbtTarjeta.TabIndex = 1;
             rbtTarjeta.TabStop = true;
             rbtTarjeta.Text = "Tarjeta";
             rbtTarjeta.UseVisualStyleBackColor = true;
+            rbtTarjeta.CheckedChanged += rbtTarjeta_CheckedChanged;
             // 
             // txtEdad
             // 
             txtEdad.Enabled = false;
-            txtEdad.Location = new Point(179, 133);
+            txtEdad.Location = new Point(137, 136);
             txtEdad.MaxLength = 3;
             txtEdad.Name = "txtEdad";
             txtEdad.Size = new Size(33, 23);
@@ -192,18 +184,18 @@
             // 
             chkCasillero.AutoSize = true;
             chkCasillero.Font = new Font("Yu Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            chkCasillero.Location = new Point(75, 311);
+            chkCasillero.Location = new Point(178, 268);
             chkCasillero.Name = "chkCasillero";
-            chkCasillero.Size = new Size(232, 29);
+            chkCasillero.Size = new Size(110, 29);
             chkCasillero.TabIndex = 7;
-            chkCasillero.Text = "Casillero - $3000/mes";
+            chkCasillero.Text = "Casillero";
             chkCasillero.UseVisualStyleBackColor = true;
             // 
             // chkEstudiante
             // 
             chkEstudiante.AutoSize = true;
             chkEstudiante.Font = new Font("Yu Gothic Medium", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            chkEstudiante.Location = new Point(220, 131);
+            chkEstudiante.Location = new Point(178, 134);
             chkEstudiante.Name = "chkEstudiante";
             chkEstudiante.Size = new Size(118, 25);
             chkEstudiante.TabIndex = 3;
@@ -213,10 +205,11 @@
             // cboCuotas
             // 
             cboCuotas.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboCuotas.Enabled = false;
             cboCuotas.FormattingEnabled = true;
-            cboCuotas.Location = new Point(101, 66);
+            cboCuotas.Location = new Point(101, 73);
             cboCuotas.Name = "cboCuotas";
-            cboCuotas.Size = new Size(121, 23);
+            cboCuotas.Size = new Size(121, 40);
             cboCuotas.TabIndex = 2;
             cboCuotas.SelectedIndexChanged += cboCuotas_SelectedIndexChanged;
             // 
@@ -225,16 +218,18 @@
             grpPagos.Controls.Add(rbtTarjeta);
             grpPagos.Controls.Add(cboCuotas);
             grpPagos.Controls.Add(rbtEfectivo);
-            grpPagos.Location = new Point(278, 338);
+            grpPagos.Font = new Font("Yu Gothic UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grpPagos.Location = new Point(26, 297);
             grpPagos.Name = "grpPagos";
-            grpPagos.Size = new Size(228, 95);
+            grpPagos.Size = new Size(262, 122);
             grpPagos.TabIndex = 9;
             grpPagos.TabStop = false;
+            grpPagos.Text = "Formas de pago";
             // 
             // btnCalcular
             // 
             btnCalcular.Font = new Font("Yu Gothic", 14.25F, FontStyle.Bold);
-            btnCalcular.Location = new Point(250, 466);
+            btnCalcular.Location = new Point(22, 425);
             btnCalcular.Name = "btnCalcular";
             btnCalcular.Size = new Size(130, 35);
             btnCalcular.TabIndex = 10;
@@ -245,7 +240,7 @@
             // btnLimpiar
             // 
             btnLimpiar.Font = new Font("Yu Gothic", 14.25F, FontStyle.Bold);
-            btnLimpiar.Location = new Point(386, 466);
+            btnLimpiar.Location = new Point(158, 425);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(130, 35);
             btnLimpiar.TabIndex = 11;
@@ -256,11 +251,12 @@
             // txtMeses
             // 
             txtMeses.Enabled = false;
-            txtMeses.Location = new Point(179, 265);
+            txtMeses.Location = new Point(137, 268);
             txtMeses.MaxLength = 2;
             txtMeses.Name = "txtMeses";
-            txtMeses.Size = new Size(128, 23);
+            txtMeses.Size = new Size(33, 23);
             txtMeses.TabIndex = 6;
+            txtMeses.TextChanged += txtMeses_TextChanged;
             txtMeses.KeyPress += txtMeses_KeyPress;
             // 
             // frmInscripcion
@@ -268,7 +264,7 @@
             AcceptButton = btnCalcular;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(528, 513);
+            ClientSize = new Size(312, 476);
             Controls.Add(txtMeses);
             Controls.Add(btnLimpiar);
             Controls.Add(btnCalcular);
@@ -279,7 +275,6 @@
             Controls.Add(txtNombre);
             Controls.Add(cboTurno);
             Controls.Add(cboPlan);
-            Controls.Add(lblPago);
             Controls.Add(lblMeses);
             Controls.Add(lblTurno);
             Controls.Add(lblPlanes);
@@ -306,7 +301,6 @@
         private Label lblPlanes;
         private Label lblTurno;
         private Label lblMeses;
-        private Label lblPago;
         private ComboBox cboPlan;
         private ComboBox cboTurno;
         private TextBox txtNombre;

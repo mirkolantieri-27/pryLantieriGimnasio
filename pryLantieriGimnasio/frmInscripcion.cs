@@ -25,8 +25,6 @@ namespace pryLantieriGimnasio
         {
             InitializeComponent();
 
-
-
         }
 
 
@@ -96,6 +94,13 @@ namespace pryLantieriGimnasio
                     descuento = precio * DESCUENTO_MAYOR;
                     precio = precio - descuento;
                     break;
+                default:
+                    if (chkEstudiante.Checked == true)
+                    {
+                        descuento = precio * DESCUENTO_ESTUDIANTE;
+                        precio = precio - descuento;
+                    }
+                    break;
             }
 
             if (pagos == "Efectivo")
@@ -123,17 +128,29 @@ namespace pryLantieriGimnasio
             txtNombre.Clear();
             txtEdad.Clear();
             txtMeses.Clear();
-            cboTurno.SelectedIndex = -1;
-            cboPlan.SelectedIndex = -1;
-            rbtEfectivo.Checked = false;
+            txtMeses.Text = "1";
+            cboTurno.SelectedIndex = 0;
+            cboPlan.SelectedIndex = 0;
+            cboCuotas.SelectedIndex = -1;
+            rbtEfectivo.Checked = true;
             rbtTarjeta.Checked = false;
             chkCasillero.Checked = false;
             chkEstudiante.Checked = false;
+            btnCalcular.Enabled = false;
+            txtNombre.Focus();
+            Edad = 0;
+            Meses = 0;
+            total = 0;
+            precio = 0;
+            descuento = 0;
+            descuento_pago = 0;
+            recargo = 0;
+
         }
 
         private void frmInscripcion_Load(object sender, EventArgs e)
         {
-            EstadoInicial();
+
             cboCuotas.Items.Add(1);
             cboCuotas.Items.Add(3);
             cboCuotas.Items.Add(6);
@@ -143,6 +160,7 @@ namespace pryLantieriGimnasio
             cboPlan.Items.Add("Musculación");
             cboPlan.Items.Add("Natación");
             cboPlan.Items.Add("Funcional");
+            EstadoInicial();
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -150,9 +168,17 @@ namespace pryLantieriGimnasio
             EstadoInicial();
         }
 
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+        }
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
-
+            nombre = txtNombre.Text;
             if (txtNombre.Text != "")
             {
                 txtEdad.Enabled = true;
@@ -166,9 +192,11 @@ namespace pryLantieriGimnasio
 
         private void txtEdad_TextChanged(object sender, EventArgs e)
         {
+            edad = txtEdad.Text;
             if (txtEdad.Text != "")
             {
                 cboPlan.Enabled = true;
+                Edad = Convert.ToInt32(txtEdad.Text);
             }
             else
             {
@@ -178,6 +206,7 @@ namespace pryLantieriGimnasio
 
         private void cboPlan_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             if (cboPlan.Text != "")
             {
                 cboTurno.Enabled = true;
@@ -203,6 +232,63 @@ namespace pryLantieriGimnasio
         private void cboCuotas_SelectedIndexChanged(object sender, EventArgs e)
         {
             Cuotas = Convert.ToInt32(cboCuotas.Text);
+        }
+
+        private void cboPlan_Click(object sender, EventArgs e)
+        {
+            if (Edad < 18)
+            {
+                edad = "Menor";
+                if (Edad <= 14)
+                {
+                    MessageBox.Show("No se puede inscribir a menores de 14 años");
+                    cboPlan.Enabled = false;
+                    txtEdad.Focus();
+                    txtEdad.Clear();
+                }
+            }
+            else
+            {
+                if (Edad >= 65)
+                {
+                    edad = "Mayor";
+                }
+            }
+        }
+
+        private void rbtTarjeta_CheckedChanged(object sender, EventArgs e)
+        {
+            pagos = "Tarjeta";
+            if (rbtTarjeta.Checked == true)
+            {
+                cboCuotas.Enabled = true;
+            }
+            else
+            {
+                cboCuotas.Enabled = false;
+            }
+        }
+
+        private void txtMeses_TextChanged(object sender, EventArgs e)
+        {
+            if (txtMeses.Text != "")
+            {
+                Meses = Convert.ToInt32(txtMeses.Text);
+                if (Meses > 12)
+                {
+                    MessageBox.Show("No se puede inscribir por más de 12 meses");
+                }
+
+
+            }
+            if (txtMeses.Text != "" && txtEdad.Text != "" && txtNombre.Text != "")
+            {
+                btnCalcular.Enabled = true;
+            }
+            else
+            {
+                btnCalcular.Enabled = false;
+            }
         }
     }
 }
