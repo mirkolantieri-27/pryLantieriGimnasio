@@ -48,79 +48,7 @@ namespace pryLantieriGimnasio
             }
         }
 
-        private void btnCalcular_Click(object sender, EventArgs e)
-        {
-            switch (planes)
-            {
-                case "Musculación":
-
-                    if (chkCasillero.Checked == true)
-                    {
-                        precio = precio + (MUSCULACION + CASILLERO) * Meses;
-                    }
-                    else
-                    {
-                        precio = precio + (MUSCULACION * Meses);
-                    }
-                    break;
-                case "Funcional":
-                    if (chkCasillero.Checked == true)
-                    {
-                        precio = precio + (FUNCIONAL + CASILLERO) * Meses;
-                    }
-                    else
-                    {
-                        precio = precio + (FUNCIONAL * Meses);
-                    }
-                    break;
-                case "Natación":
-                    if (chkCasillero.Checked == true)
-                    {
-                        precio = precio + (NATACION + CASILLERO) * Meses;
-                    }
-                    else
-                    {
-                        precio = precio + (NATACION * Meses);
-                    }
-                    break;
-            }
-            switch (edad)
-            {
-                case "Menor":
-                    descuento = precio * DESCUENTO_MENOR;
-                    precio = precio - descuento;
-                    break;
-                case "Mayor":
-                    descuento = precio * DESCUENTO_MAYOR;
-                    precio = precio - descuento;
-                    break;
-                default:
-                    if (chkEstudiante.Checked == true)
-                    {
-                        descuento = precio * DESCUENTO_ESTUDIANTE;
-                        precio = precio - descuento;
-                    }
-                    break;
-            }
-
-            if (pagos == "Efectivo")
-            {
-                descuento_pago = precio * DESCUENTO_PAGO;
-                precio = precio - descuento_pago;
-            }
-            else if (pagos == "Tarjeta" && Cuotas == 3)
-            {
-                recargo = precio * RECARGO_CUOTA3;
-                precio = precio + recargo;
-            }
-            else if (pagos == "Tarjeta" && Cuotas == 6)
-            {
-                recargo = precio * RECARGO_CUOTA6;
-                precio = precio + recargo;
-            }
-            total = precio;
-            MessageBox.Show("El total a pagar es: " + total);
-        }
+       
 
 
         private void EstadoInicial()
@@ -206,6 +134,7 @@ namespace pryLantieriGimnasio
 
         private void cboPlan_SelectedIndexChanged(object sender, EventArgs e)
         {
+            planes = cboPlan.Text;
 
             if (cboPlan.Text != "")
             {
@@ -231,7 +160,14 @@ namespace pryLantieriGimnasio
 
         private void cboCuotas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Cuotas = Convert.ToInt32(cboCuotas.Text);
+            if (cboCuotas.Text != "")
+            {
+                Cuotas = Convert.ToInt32(cboCuotas.Text);
+            }
+            else
+            {
+                Cuotas = 0;
+            }
         }
 
         private void cboPlan_Click(object sender, EventArgs e)
@@ -259,13 +195,17 @@ namespace pryLantieriGimnasio
         private void rbtTarjeta_CheckedChanged(object sender, EventArgs e)
         {
             pagos = "Tarjeta";
+
             if (rbtTarjeta.Checked == true)
             {
                 cboCuotas.Enabled = true;
+                cboCuotas.SelectedIndex = 0;
             }
             else
             {
                 cboCuotas.Enabled = false;
+                cboCuotas.SelectedIndex = -1;
+                pagos = "Efectivo";
             }
         }
 
@@ -277,6 +217,8 @@ namespace pryLantieriGimnasio
                 if (Meses > 12)
                 {
                     MessageBox.Show("No se puede inscribir por más de 12 meses");
+                    txtMeses.Clear();
+                    txtMeses.Focus();
                 }
 
 
@@ -289,6 +231,144 @@ namespace pryLantieriGimnasio
             {
                 btnCalcular.Enabled = false;
             }
+        }
+        public struct SOCIO
+        {
+            public string nombre;
+            public string edad;
+
+            public string plan;
+
+            public string meses;
+            public string estudiante;
+            public string casillero;
+
+            public string formaDePago;
+            public decimal total;
+            public decimal valorDeCuota;
+
+            
+        }
+        private void btnCalcular_Click(object sender, EventArgs e)
+        {
+            precio = 0;
+            
+            switch (planes)
+            {
+                case "Musculación":
+
+                    if (chkCasillero.Checked == true)
+                    {
+                        precio = precio + (MUSCULACION + CASILLERO) * Meses;
+                    }
+                    else
+                    {
+                        precio = precio + (MUSCULACION * Meses);
+                    }
+                    break;
+                case "Funcional":
+                    if (chkCasillero.Checked == true)
+                    {
+                        precio = precio + (FUNCIONAL + CASILLERO) * Meses;
+                    }
+                    else
+                    {
+                        precio = precio + (FUNCIONAL * Meses);
+                    }
+                    break;
+                case "Natación":
+                    if (chkCasillero.Checked == true)
+                    {
+                        precio = precio + (NATACION + CASILLERO) * Meses;
+                    }
+                    else
+                    {
+                        precio = precio + (NATACION * Meses);
+                    }
+                    break;
+            }
+            int edad = int.Parse(txtEdad.Text);
+
+            switch (edad)
+            {
+                case >= 18: // Supongamos que mayor es 18 o más
+                    descuento = precio * DESCUENTO_MAYOR;
+                    precio = precio - descuento;
+                    break;
+
+                case >= 15: // Entre 15 y 17
+                    descuento = precio * DESCUENTO_MENOR;
+                    precio = precio - descuento;
+                    break;
+
+                default: // Menores de 15
+                    if (chkEstudiante.Checked == true)
+                    {
+                        descuento = precio * DESCUENTO_ESTUDIANTE;
+                        precio = precio - descuento;
+                    }
+                    break;
+            }
+
+            if (rbtEfectivo.Checked)
+            {
+                descuento_pago = precio * DESCUENTO_PAGO;
+                precio = precio - descuento_pago;
+            }
+            else if (pagos == "Tarjeta" && Cuotas == 3)
+            {
+                recargo = precio * RECARGO_CUOTA3;
+                precio = precio + recargo;
+            }
+            else if (pagos == "Tarjeta" && Cuotas == 6)
+            {
+                recargo = precio * RECARGO_CUOTA6;
+                precio = precio + recargo;
+            }
+
+            
+            MessageBox.Show("El total a pagar es: " + precio);
+
+            SOCIO socio = new SOCIO();
+            socio.nombre = txtNombre.Text;
+            socio.edad = txtEdad.Text;
+            socio.plan = cboPlan.Text;
+            socio.meses = txtMeses.Text;
+            if (chkEstudiante.Checked)
+            {
+                socio.estudiante = "Si";
+            }
+            else
+            {
+                socio.estudiante = "No";
+            }
+
+            if (chkCasillero.Checked)
+            {
+                socio.casillero = "Si";
+            }
+            else
+            {
+                socio.casillero = "No";
+            }
+
+
+            MessageBox.Show(
+                "Socio: " + socio.nombre +
+                "\nEdad: " + socio.edad +
+                "\nPlan: " + socio.plan +
+                "\nMeses: " + socio.meses +
+                "\nEstudiante: " + socio.estudiante +
+                "\nCasillero: " + socio.casillero +
+                "\nForma de pago: " + socio.formaDePago +
+                "\nTotal: " + socio.total.ToString("C2") +
+                "\nValor de cuota: " + socio.valorDeCuota.ToString("C2"),
+                "Inscripción al gimnasio",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+
+            EstadoInicial();
         }
     }
 }
