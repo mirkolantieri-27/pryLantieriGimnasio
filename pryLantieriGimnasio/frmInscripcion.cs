@@ -291,17 +291,17 @@ namespace pryLantieriGimnasio
 
             switch (edad)
             {
-                case >= 18: // Supongamos que mayor es 18 o más
+                case >= 18: 
                     descuento = precio * DESCUENTO_MAYOR;
                     precio = precio - descuento;
                     break;
 
-                case >= 15: // Entre 15 y 17
+                case >= 15: 
                     descuento = precio * DESCUENTO_MENOR;
                     precio = precio - descuento;
                     break;
 
-                default: // Menores de 15
+                default: 
                     if (chkEstudiante.Checked == true)
                     {
                         descuento = precio * DESCUENTO_ESTUDIANTE;

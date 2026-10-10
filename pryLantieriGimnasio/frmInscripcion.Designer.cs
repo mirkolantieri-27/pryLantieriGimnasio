@@ -195,7 +195,7 @@
             // 
             chkEstudiante.AutoSize = true;
             chkEstudiante.Font = new Font("Yu Gothic Medium", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            chkEstudiante.Location = new Point(178, 134);
+            chkEstudiante.Location = new Point(178, 136);
             chkEstudiante.Name = "chkEstudiante";
             chkEstudiante.Size = new Size(118, 25);
             chkEstudiante.TabIndex = 3;
