@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInscripcion));
             lblTitulo = new Label();
             lblNombre = new Label();
             lblEdad = new Label();
@@ -54,7 +55,7 @@
             // 
             lblTitulo.AutoSize = true;
             lblTitulo.Font = new Font("Yu Gothic", 24F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblTitulo.Location = new Point(45, 9);
+            lblTitulo.Location = new Point(45, 19);
             lblTitulo.Name = "lblTitulo";
             lblTitulo.Size = new Size(233, 42);
             lblTitulo.TabIndex = 0;
@@ -282,6 +283,7 @@
             Controls.Add(lblNombre);
             Controls.Add(lblTitulo);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "frmInscripcion";
             StartPosition = FormStartPosition.CenterScreen;

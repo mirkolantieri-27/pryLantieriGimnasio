@@ -351,6 +351,16 @@ namespace pryLantieriGimnasio
             {
                 socio.casillero = "No";
             }
+            if (rbtEfectivo.Checked)
+            {
+                socio.formaDePago = "Efectivo";
+            }
+            if (rbtTarjeta.Checked)
+            {
+                socio.formaDePago = "Tarjeta";
+            }
+            socio.total = precio;
+            
 
 
             MessageBox.Show(
@@ -361,6 +371,7 @@ namespace pryLantieriGimnasio
                 "\nEstudiante: " + socio.estudiante +
                 "\nCasillero: " + socio.casillero +
                 "\nForma de pago: " + socio.formaDePago +
+                "\nSubtotal: " + (precio + descuento + descuento_pago + recargo).ToString("C2") +
                 "\nTotal: " + socio.total.ToString("C2") +
                 "\nValor de cuota: " + socio.valorDeCuota.ToString("C2"),
                 "Inscripción al gimnasio",
