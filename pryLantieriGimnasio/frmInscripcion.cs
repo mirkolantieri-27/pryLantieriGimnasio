@@ -287,17 +287,16 @@ namespace pryLantieriGimnasio
                     }
                     break;
             }
-            int edad = int.Parse(txtEdad.Text);
 
             switch (edad)
             {
-                case >= 18: 
-                    descuento = precio * DESCUENTO_MAYOR;
+                case "Menor": 
+                    descuento = precio * DESCUENTO_MENOR;
                     precio = precio - descuento;
                     break;
 
-                case >= 15: 
-                    descuento = precio * DESCUENTO_MENOR;
+                case "Mayor": 
+                    descuento = precio * DESCUENTO_MAYOR;
                     precio = precio - descuento;
                     break;
 
@@ -327,7 +326,7 @@ namespace pryLantieriGimnasio
             }
 
             
-            MessageBox.Show("El total a pagar es: " + precio);
+           
 
             SOCIO socio = new SOCIO();
             socio.nombre = txtNombre.Text;
@@ -371,7 +370,7 @@ namespace pryLantieriGimnasio
                 "\nEstudiante: " + socio.estudiante +
                 "\nCasillero: " + socio.casillero +
                 "\nForma de pago: " + socio.formaDePago +
-                "\nSubtotal: " + (precio + descuento + descuento_pago + recargo).ToString("C2") +
+                "\nSubtotal: " + (precio + descuento + descuento_pago - recargo).ToString("C2") +
                 "\nTotal: " + socio.total.ToString("C2") +
                 "\nValor de cuota: " + socio.valorDeCuota.ToString("C2"),
                 "Inscripción al gimnasio",
