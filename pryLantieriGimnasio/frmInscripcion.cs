@@ -1,5 +1,12 @@
-using System.Diagnostics.Eventing.Reader;
-using System.Reflection.Metadata.Ecma335;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics;
+using System.Drawing;
+using System.Numerics;
+using System.Text;
+using System.Windows.Forms;
 
 namespace pryLantieriGimnasio
 {
@@ -14,12 +21,13 @@ namespace pryLantieriGimnasio
         const decimal DESCUENTO_ESTUDIANTE = 0.15m;
         const decimal DESCUENTO_PAGO = 0.10m;
         const decimal RECARGO_CUOTA3 = 0.10m;
-        const decimal RECARGO_CUOTA6 = 0.30m;
-        string nombre, edad, planes, turno, meses, pagos;
-        decimal precio, descuento, recargo, total, descuento_pago;
-
-        int Edad, Meses, Cuotas;
-
+        const decimal RECARGO_CUOTA6 = 0.20m;
+        string nombre, edad, planes, turno, meses, pagos, mensaje;
+        decimal precio, descuento, recargo, total, descuento_pago, Desc;
+        string baseClientes = "Socios.txt";
+        int Edad, Meses, Cuotas, indice, Nro_socios;
+        string[] socios = new string[5];
+        string[] infoSocios = new string[5];
 
         public frmInscripcion()
         {
@@ -48,7 +56,7 @@ namespace pryLantieriGimnasio
             }
         }
 
-       
+
 
 
         private void EstadoInicial()
@@ -71,9 +79,10 @@ namespace pryLantieriGimnasio
             total = 0;
             precio = 0;
             descuento = 0;
+            Desc = 0;
             descuento_pago = 0;
             recargo = 0;
-
+            indice = 0;
         }
 
         private void frmInscripcion_Load(object sender, EventArgs e)
@@ -247,12 +256,12 @@ namespace pryLantieriGimnasio
             public decimal total;
             public decimal valorDeCuota;
 
-            
+
         }
         private void btnCalcular_Click(object sender, EventArgs e)
         {
             precio = 0;
-            
+
             switch (planes)
             {
                 case "Musculación":
@@ -290,21 +299,24 @@ namespace pryLantieriGimnasio
 
             switch (edad)
             {
-                case "Menor": 
+                case "Menor":
                     descuento = precio * DESCUENTO_MENOR;
                     precio = precio - descuento;
+                    Desc = DESCUENTO_MENOR * 100;
                     break;
 
-                case "Mayor": 
+                case "Mayor":
                     descuento = precio * DESCUENTO_MAYOR;
                     precio = precio - descuento;
+                    Desc = DESCUENTO_MAYOR * 100;
                     break;
 
-                default: 
+                default:
                     if (chkEstudiante.Checked == true)
                     {
                         descuento = precio * DESCUENTO_ESTUDIANTE;
                         precio = precio - descuento;
+                        Desc = DESCUENTO_ESTUDIANTE * 100;
                     }
                     break;
             }
@@ -313,6 +325,7 @@ namespace pryLantieriGimnasio
             {
                 descuento_pago = precio * DESCUENTO_PAGO;
                 precio = precio - descuento_pago;
+                Desc = Desc + (DESCUENTO_PAGO * 100);
             }
             else if (pagos == "Tarjeta" && Cuotas == 3)
             {
@@ -325,8 +338,8 @@ namespace pryLantieriGimnasio
                 precio = precio + recargo;
             }
 
-            
-           
+
+
 
             SOCIO socio = new SOCIO();
             socio.nombre = txtNombre.Text;
@@ -357,28 +370,59 @@ namespace pryLantieriGimnasio
             if (rbtTarjeta.Checked)
             {
                 socio.formaDePago = "Tarjeta";
+                Cuotas = Convert.ToInt32(cboCuotas.Text);
             }
             socio.total = precio;
-            
 
 
-            MessageBox.Show(
-                "Socio: " + socio.nombre +
-                "\nEdad: " + socio.edad +
-                "\nPlan: " + socio.plan +
-                "\nMeses: " + socio.meses +
-                "\nEstudiante: " + socio.estudiante +
-                "\nCasillero: " + socio.casillero +
-                "\nForma de pago: " + socio.formaDePago +
-                "\nSubtotal: " + (precio + descuento + descuento_pago - recargo).ToString("C2") +
-                "\nTotal: " + socio.total.ToString("C2") +
-                "\nValor de cuota: " + socio.valorDeCuota.ToString("C2"),
+            mensaje = "Socio: " + socio.nombre +
+               "\nEdad: " + socio.edad +
+               "\nPlan: " + socio.plan +
+               "\nMeses: " + socio.meses +
+               "\nEstudiante: " + socio.estudiante +
+               "\nCasillero: " + socio.casillero +
+               "\nForma de pago: " + socio.formaDePago +
+               "\nCuotas: " + Cuotas +
+               "\nDescuento: " + Desc + "%" +
+               "\nSubtotal: ARS$ " + Math.Truncate(precio + descuento + descuento_pago - recargo) +
+               "\nTotal: ARS$ " + Math.Truncate(socio.total);
+            MessageBox.Show(mensaje,
                 "Inscripción al gimnasio",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information
             );
 
+            StreamWriter Socios = new StreamWriter("Socios.txt", true);
+            Socios.WriteLine(mensaje);
+            Socios.Close();
+
+            
+            if(indice < socios.Length)
+            {
+                socios[indice] = socio.nombre;
+                infoSocios[indice] = mensaje;
+                indice = indice + 1;
+                Nro_socios = Nro_socios + 1;
+                lstConsulta.Items.Add(socio.nombre);
+            }
+            else
+            {
+                MessageBox.Show("Se ha alcanzado el límite de socios registrados.", "Límite alcanzado");
+            }
             EstadoInicial();
+        }
+
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+           
+            for (int indice = 0; indice < socios.Length; indice++)
+            {
+                if (Nro_socios == indice)
+                {
+                    MessageBox.Show(infoSocios[indice], "Información del socio");
+                }
+            }
         }
     }
 }

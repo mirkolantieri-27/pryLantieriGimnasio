@@ -48,6 +48,8 @@
             btnCalcular = new Button();
             btnLimpiar = new Button();
             txtMeses = new TextBox();
+            lstConsulta = new ListBox();
+            btnConsultar = new Button();
             grpPagos.SuspendLayout();
             SuspendLayout();
             // 
@@ -55,7 +57,7 @@
             // 
             lblTitulo.AutoSize = true;
             lblTitulo.Font = new Font("Yu Gothic", 24F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblTitulo.Location = new Point(45, 19);
+            lblTitulo.Location = new Point(42, 9);
             lblTitulo.Name = "lblTitulo";
             lblTitulo.Size = new Size(233, 42);
             lblTitulo.TabIndex = 0;
@@ -65,7 +67,7 @@
             // 
             lblNombre.AutoSize = true;
             lblNombre.Font = new Font("Yu Gothic", 18F, FontStyle.Bold);
-            lblNombre.Location = new Point(12, 88);
+            lblNombre.Location = new Point(9, 56);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(114, 31);
             lblNombre.TabIndex = 1;
@@ -75,7 +77,7 @@
             // 
             lblEdad.AutoSize = true;
             lblEdad.Font = new Font("Yu Gothic", 18F, FontStyle.Bold);
-            lblEdad.Location = new Point(45, 128);
+            lblEdad.Location = new Point(42, 96);
             lblEdad.Name = "lblEdad";
             lblEdad.Size = new Size(81, 31);
             lblEdad.TabIndex = 2;
@@ -85,7 +87,7 @@
             // 
             lblPlanes.AutoSize = true;
             lblPlanes.Font = new Font("Yu Gothic", 18F, FontStyle.Bold);
-            lblPlanes.Location = new Point(50, 175);
+            lblPlanes.Location = new Point(47, 143);
             lblPlanes.Name = "lblPlanes";
             lblPlanes.Size = new Size(74, 31);
             lblPlanes.TabIndex = 4;
@@ -95,7 +97,7 @@
             // 
             lblTurno.AutoSize = true;
             lblTurno.Font = new Font("Yu Gothic", 18F, FontStyle.Bold);
-            lblTurno.Location = new Point(36, 216);
+            lblTurno.Location = new Point(33, 184);
             lblTurno.Name = "lblTurno";
             lblTurno.Size = new Size(88, 31);
             lblTurno.TabIndex = 5;
@@ -105,7 +107,7 @@
             // 
             lblMeses.AutoSize = true;
             lblMeses.Font = new Font("Yu Gothic", 18F, FontStyle.Bold);
-            lblMeses.Location = new Point(26, 259);
+            lblMeses.Location = new Point(23, 227);
             lblMeses.Name = "lblMeses";
             lblMeses.Size = new Size(98, 31);
             lblMeses.TabIndex = 6;
@@ -116,7 +118,7 @@
             cboPlan.DropDownStyle = ComboBoxStyle.DropDownList;
             cboPlan.Enabled = false;
             cboPlan.FormattingEnabled = true;
-            cboPlan.Location = new Point(137, 183);
+            cboPlan.Location = new Point(134, 151);
             cboPlan.Name = "cboPlan";
             cboPlan.Size = new Size(121, 23);
             cboPlan.TabIndex = 4;
@@ -128,7 +130,7 @@
             cboTurno.DropDownStyle = ComboBoxStyle.DropDownList;
             cboTurno.Enabled = false;
             cboTurno.FormattingEnabled = true;
-            cboTurno.Location = new Point(137, 225);
+            cboTurno.Location = new Point(134, 193);
             cboTurno.Name = "cboTurno";
             cboTurno.Size = new Size(121, 23);
             cboTurno.TabIndex = 5;
@@ -137,7 +139,7 @@
             // txtNombre
             // 
             txtNombre.CharacterCasing = CharacterCasing.Upper;
-            txtNombre.Location = new Point(137, 96);
+            txtNombre.Location = new Point(134, 64);
             txtNombre.MaxLength = 30;
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(128, 23);
@@ -173,7 +175,7 @@
             // txtEdad
             // 
             txtEdad.Enabled = false;
-            txtEdad.Location = new Point(137, 136);
+            txtEdad.Location = new Point(134, 104);
             txtEdad.MaxLength = 3;
             txtEdad.Name = "txtEdad";
             txtEdad.Size = new Size(33, 23);
@@ -185,7 +187,7 @@
             // 
             chkCasillero.AutoSize = true;
             chkCasillero.Font = new Font("Yu Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            chkCasillero.Location = new Point(178, 268);
+            chkCasillero.Location = new Point(175, 236);
             chkCasillero.Name = "chkCasillero";
             chkCasillero.Size = new Size(110, 29);
             chkCasillero.TabIndex = 7;
@@ -196,7 +198,7 @@
             // 
             chkEstudiante.AutoSize = true;
             chkEstudiante.Font = new Font("Yu Gothic Medium", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            chkEstudiante.Location = new Point(178, 136);
+            chkEstudiante.Location = new Point(175, 104);
             chkEstudiante.Name = "chkEstudiante";
             chkEstudiante.Size = new Size(118, 25);
             chkEstudiante.TabIndex = 3;
@@ -220,7 +222,7 @@
             grpPagos.Controls.Add(cboCuotas);
             grpPagos.Controls.Add(rbtEfectivo);
             grpPagos.Font = new Font("Yu Gothic UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grpPagos.Location = new Point(26, 297);
+            grpPagos.Location = new Point(23, 265);
             grpPagos.Name = "grpPagos";
             grpPagos.Size = new Size(262, 122);
             grpPagos.TabIndex = 9;
@@ -230,7 +232,7 @@
             // btnCalcular
             // 
             btnCalcular.Font = new Font("Yu Gothic", 14.25F, FontStyle.Bold);
-            btnCalcular.Location = new Point(22, 425);
+            btnCalcular.Location = new Point(19, 393);
             btnCalcular.Name = "btnCalcular";
             btnCalcular.Size = new Size(130, 35);
             btnCalcular.TabIndex = 10;
@@ -241,7 +243,7 @@
             // btnLimpiar
             // 
             btnLimpiar.Font = new Font("Yu Gothic", 14.25F, FontStyle.Bold);
-            btnLimpiar.Location = new Point(158, 425);
+            btnLimpiar.Location = new Point(155, 393);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(130, 35);
             btnLimpiar.TabIndex = 11;
@@ -252,7 +254,7 @@
             // txtMeses
             // 
             txtMeses.Enabled = false;
-            txtMeses.Location = new Point(137, 268);
+            txtMeses.Location = new Point(134, 236);
             txtMeses.MaxLength = 2;
             txtMeses.Name = "txtMeses";
             txtMeses.Size = new Size(33, 23);
@@ -260,12 +262,33 @@
             txtMeses.TextChanged += txtMeses_TextChanged;
             txtMeses.KeyPress += txtMeses_KeyPress;
             // 
+            // lstConsulta
+            // 
+            lstConsulta.FormattingEnabled = true;
+            lstConsulta.Location = new Point(1, 444);
+            lstConsulta.Name = "lstConsulta";
+            lstConsulta.Size = new Size(314, 109);
+            lstConsulta.TabIndex = 12;
+            // 
+            // btnConsultar
+            // 
+            btnConsultar.Font = new Font("Yu Gothic", 14.25F, FontStyle.Bold);
+            btnConsultar.Location = new Point(91, 559);
+            btnConsultar.Name = "btnConsultar";
+            btnConsultar.Size = new Size(130, 35);
+            btnConsultar.TabIndex = 13;
+            btnConsultar.Text = "Co&nsultar";
+            btnConsultar.UseVisualStyleBackColor = true;
+            btnConsultar.Click += btnConsultar_Click;
+            // 
             // frmInscripcion
             // 
             AcceptButton = btnCalcular;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(312, 476);
+            ClientSize = new Size(312, 611);
+            Controls.Add(btnConsultar);
+            Controls.Add(lstConsulta);
             Controls.Add(txtMeses);
             Controls.Add(btnLimpiar);
             Controls.Add(btnCalcular);
@@ -316,5 +339,7 @@
         private Button btnCalcular;
         private Button btnLimpiar;
         private TextBox txtMeses;
+        private ListBox lstConsulta;
+        private Button btnConsultar;
     }
 }
