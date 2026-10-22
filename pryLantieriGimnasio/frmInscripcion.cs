@@ -82,7 +82,7 @@ namespace pryLantieriGimnasio
             Desc = 0;
             descuento_pago = 0;
             recargo = 0;
-            indice = 0;
+           
         }
 
         private void frmInscripcion_Load(object sender, EventArgs e)
@@ -402,7 +402,7 @@ namespace pryLantieriGimnasio
                 socios[indice] = socio.nombre;
                 infoSocios[indice] = mensaje;
                 indice = indice + 1;
-                Nro_socios = Nro_socios + 1;
+               
                 lstConsulta.Items.Add(socio.nombre);
             }
             else
@@ -415,7 +415,7 @@ namespace pryLantieriGimnasio
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-           
+            Nro_socios = lstConsulta.SelectedIndex;
             for (int indice = 0; indice < socios.Length; indice++)
             {
                 if (Nro_socios == indice)
