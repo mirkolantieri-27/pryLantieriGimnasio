@@ -10,8 +10,4 @@
     <ApplicationIcon>pesa (1).ico</ApplicationIcon>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Include="pesa (1).ico" />
-  </ItemGroup>
-
 </Project>
